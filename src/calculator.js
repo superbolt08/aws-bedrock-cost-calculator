@@ -5,8 +5,8 @@ export const MODELS = {
 };
 
 export const PROFILES = {
-  ordinary: { inputTokens: 2750, outputTokens: 525 },
-  rag: { inputTokens: 8000, outputTokens: 525 },
+  ordinary: { inputTokens: 2750, outputTokens: 525, lowerInputTokens: 1500, lowerOutputTokens: 250, upperInputTokens: 4000, upperOutputTokens: 800 },
+  rag: { inputTokens: 8000, outputTokens: 525, lowerInputTokens: 5000, lowerOutputTokens: 250, upperInputTokens: 11000, upperOutputTokens: 800 },
 };
 
 export function calculate(values) {
@@ -19,4 +19,10 @@ export function calculate(values) {
   const costPerChat = inputCost + outputCost;
   const monthlyCost = cloudChats * costPerChat;
   return { totalChats, cloudChats, costPerChat, monthlyCost, annualCost: monthlyCost * 12, totalTokens: values.inputTokens + values.outputTokens };
+}
+
+export function calculateRange(values) {
+  const lower = calculate({ ...values, inputTokens: values.lowerInputTokens, outputTokens: values.lowerOutputTokens });
+  const upper = calculate({ ...values, inputTokens: values.upperInputTokens, outputTokens: values.upperOutputTokens });
+  return { lower, upper };
 }

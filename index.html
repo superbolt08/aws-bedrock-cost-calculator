@@ -52,9 +52,22 @@
 
           <div class="section-heading"><span>3</span><div><h2>Tokens per cloud chat</h2><p>Presets use the chatbot context ranges discussed for ordinary and RAG-heavy chat.</p></div></div>
           <fieldset class="toggle-group"><legend>Conversation profile</legend><label><input type="radio" name="profile" value="ordinary" checked /> Ordinary</label><label><input type="radio" name="profile" value="rag" /> RAG-heavy / long</label><label><input type="radio" name="profile" value="custom" /> Custom</label></fieldset>
-          <div class="two-col">
+          <fieldset class="toggle-group token-mode"><legend>Token calculation type</legend><label><input type="radio" name="tokenMode" value="single" checked /> One estimate</label><label><input type="radio" name="tokenMode" value="range" /> Lower and upper range</label></fieldset>
+          <div class="two-col" id="singleTokens">
             <label>Input tokens / chat<input id="inputTokens" name="inputTokens" type="number" min="0" value="2750" /></label>
             <label>Output tokens / chat<input id="outputTokens" name="outputTokens" type="number" min="0" value="525" /></label>
+          </div>
+          <div id="rangeTokens" hidden>
+            <div class="range-labels"><strong>Lower-bound estimate</strong><span>Use a lighter conversation payload.</span></div>
+            <div class="two-col">
+              <label>Input tokens / chat<input id="lowerInputTokens" name="lowerInputTokens" type="number" min="0" value="1500" /></label>
+              <label>Output tokens / chat<input id="lowerOutputTokens" name="lowerOutputTokens" type="number" min="0" value="250" /></label>
+            </div>
+            <div class="range-labels"><strong>Upper-bound estimate</strong><span>Use a longer prompt, history, or RAG payload.</span></div>
+            <div class="two-col">
+              <label>Input tokens / chat<input id="upperInputTokens" name="upperInputTokens" type="number" min="0" value="4000" /></label>
+              <label>Output tokens / chat<input id="upperOutputTokens" name="upperOutputTokens" type="number" min="0" value="800" /></label>
+            </div>
           </div>
         </form>
 
@@ -64,15 +77,18 @@
           <p class="muted" id="regionSummary">Canada Central</p>
           <div class="total"><span>Estimated monthly model cost</span><strong id="monthlyCost">$0</strong><small>USD, token charges only</small></div>
           <div class="total secondary"><span>Estimated annual model cost</span><strong id="annualCost">$0</strong></div>
-          <dl class="metrics">
-            <div><dt>Total chats / month</dt><dd id="totalChats">0</dd></div>
-            <div><dt>AWS-routed chats / month</dt><dd id="cloudChats">0</dd></div>
-            <div><dt>Cost per AWS chat</dt><dd id="costPerChat">$0</dd></div>
-            <div><dt>Tokens per AWS chat</dt><dd id="totalTokens">0</dd></div>
-          </dl>
-          <section class="formula"><h3>Calculation</h3><p id="formula"></p></section>
-          <button id="copySummary" type="button">Copy calculation summary</button>
-          <p class="copy-status" id="copyStatus" role="status"></p>
+          <button id="summaryToggle" class="summary-toggle" type="button" aria-expanded="true" aria-controls="summaryDetails">Hide calculation summary</button>
+          <div id="summaryDetails">
+            <dl class="metrics">
+              <div><dt>Total chats / month</dt><dd id="totalChats">0</dd></div>
+              <div><dt>AWS-routed chats / month</dt><dd id="cloudChats">0</dd></div>
+              <div><dt>Cost per AWS chat</dt><dd id="costPerChat">$0</dd></div>
+              <div><dt>Tokens per AWS chat</dt><dd id="totalTokens">0</dd></div>
+            </dl>
+            <section class="formula"><h3>Calculation</h3><p id="formula"></p></section>
+            <button id="copySummary" type="button">Copy calculation summary</button>
+            <p class="copy-status" id="copyStatus" role="status"></p>
+          </div>
         </aside>
       </section>
 
