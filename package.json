@@ -1,0 +1,6 @@
+{
+  "name": "aws-bedrock-cost-calculator",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test tests/*.mjs" }
+}

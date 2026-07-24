@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Estimate Amazon Bedrock model costs from token, traffic, and fallback assumptions." />
+    <title>Bedrock Cost Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">AWS BEDROCK PLANNING TOOL</p>
+        <h1>Cost clarity for every model route.</h1>
+        <p>Estimate monthly and annual Bedrock token costs. Start with a preset, then replace any assumption with your own verified number.</p>
+      </header>
+
+      <section class="notice" aria-label="Pricing disclaimer">
+        <strong>Important:</strong> prices are editable planning defaults, not a billing quote. Confirm model availability, inference region, and current pricing with AWS before approval.
+      </section>
+
+      <section class="grid" aria-label="Calculator">
+        <form class="panel controls" id="calculator" novalidate>
+          <div class="section-heading"><span>1</span><div><h2>Model and region</h2><p>Choose a reference preset or enter a custom rate.</p></div></div>
+          <label for="model">Model preset</label>
+          <select id="model" name="model">
+            <option value="llama3-ca">Meta Llama 3 70B Instruct — Canada Central</option>
+            <option value="llama33-us">Meta Llama 3.3 70B Instruct — US regions</option>
+            <option value="custom">Custom model / region</option>
+          </select>
+
+          <div class="two-col">
+            <label>Model name<input id="modelName" name="modelName" type="text" /></label>
+            <label>Inference region<input id="region" name="region" type="text" /></label>
+          </div>
+          <div class="two-col">
+            <label>Input price <span>USD / 1M tokens</span><input id="inputPrice" name="inputPrice" type="number" min="0" step="0.001" /></label>
+            <label>Output price <span>USD / 1M tokens</span><input id="outputPrice" name="outputPrice" type="number" min="0" step="0.001" /></label>
+          </div>
+
+          <div class="section-heading"><span>2</span><div><h2>Traffic and routing</h2><p>Choose users or enter monthly chats directly.</p></div></div>
+          <fieldset class="toggle-group"><legend>Volume input</legend><label><input type="radio" name="volumeMode" value="users" checked /> Users and chats/day</label><label><input type="radio" name="volumeMode" value="chats" /> Monthly chats</label></fieldset>
+          <div class="two-col" id="userInputs">
+            <label>Active users<input id="users" name="users" type="number" min="0" value="1000" /></label>
+            <label>Chats per user / day<input id="chatsPerDay" name="chatsPerDay" type="number" min="0" step="0.1" value="10" /></label>
+          </div>
+          <label id="monthlyChatsLabel" hidden>Monthly chats<input id="monthlyChats" name="monthlyChats" type="number" min="0" value="300000" /></label>
+          <div class="two-col">
+            <label>Days per month<input id="days" name="days" type="number" min="1" max="31" value="30" /></label>
+            <label>AWS fallback / cloud share <span>%</span><input id="fallbackRate" name="fallbackRate" type="number" min="0" max="100" step="0.1" value="5" /></label>
+          </div>
+
+          <div class="section-heading"><span>3</span><div><h2>Tokens per cloud chat</h2><p>Presets use the chatbot context ranges discussed for ordinary and RAG-heavy chat.</p></div></div>
+          <fieldset class="toggle-group"><legend>Conversation profile</legend><label><input type="radio" name="profile" value="ordinary" checked /> Ordinary</label><label><input type="radio" name="profile" value="rag" /> RAG-heavy / long</label><label><input type="radio" name="profile" value="custom" /> Custom</label></fieldset>
+          <div class="two-col">
+            <label>Input tokens / chat<input id="inputTokens" name="inputTokens" type="number" min="0" value="2750" /></label>
+            <label>Output tokens / chat<input id="outputTokens" name="outputTokens" type="number" min="0" value="525" /></label>
+          </div>
+        </form>
+
+        <aside class="panel results" aria-live="polite">
+          <p class="eyebrow">ESTIMATE</p>
+          <h2 id="modelSummary">Meta Llama 3 70B Instruct</h2>
+          <p class="muted" id="regionSummary">Canada Central</p>
+          <div class="total"><span>Estimated monthly model cost</span><strong id="monthlyCost">$0</strong><small>USD, token charges only</small></div>
+          <div class="total secondary"><span>Estimated annual model cost</span><strong id="annualCost">$0</strong></div>
+          <dl class="metrics">
+            <div><dt>Total chats / month</dt><dd id="totalChats">0</dd></div>
+            <div><dt>AWS-routed chats / month</dt><dd id="cloudChats">0</dd></div>
+            <div><dt>Cost per AWS chat</dt><dd id="costPerChat">$0</dd></div>
+            <div><dt>Tokens per AWS chat</dt><dd id="totalTokens">0</dd></div>
+          </dl>
+          <section class="formula"><h3>Calculation</h3><p id="formula"></p></section>
+          <button id="copySummary" type="button">Copy calculation summary</button>
+          <p class="copy-status" id="copyStatus" role="status"></p>
+        </aside>
+      </section>
+
+      <section class="guide">
+        <h2>How to use this estimate</h2>
+        <div class="guide-grid">
+          <article><h3>Use measured tokens</h3><p>Replace profile defaults with tokens from your application logs once traffic is available. Retrieved documents and conversation history usually dominate input cost.</p></article>
+          <article><h3>Separate availability from quality</h3><p>A reliability fallback should normally be a small share of traffic. A sustained high percentage signals that the primary capacity needs attention.</p></article>
+          <article><h3>Check residency independently</h3><p>Pricing does not prove data residency. Confirm the exact model, region, and inference mode with your privacy and cloud teams.</p></article>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
