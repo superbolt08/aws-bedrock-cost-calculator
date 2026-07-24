@@ -26,6 +26,9 @@
           <select id="model" name="model">
             <option value="llama3-ca">Meta Llama 3 70B Instruct — Canada Central</option>
             <option value="llama33-us">Meta Llama 3.3 70B Instruct — US regions</option>
+            <option value="mistral7b">Mistral 7B — in-region pricing</option>
+            <option value="mixtral8x7b">Mixtral 8x7B — in-region pricing</option>
+            <option value="mistralLarge2402">Mistral Large (24.02) — in-region pricing</option>
             <option value="custom">Custom model / region</option>
           </select>
 
@@ -82,8 +85,8 @@
             <dl class="metrics">
               <div><dt>Total chats / month</dt><dd id="totalChats">0</dd></div>
               <div><dt>AWS-routed chats / month</dt><dd id="cloudChats">0</dd></div>
-              <div><dt>Cost per AWS chat</dt><dd id="costPerChat">$0</dd></div>
-              <div><dt>Tokens per AWS chat</dt><dd id="totalTokens">0</dd></div>
+              <div><dt>Cost per AWS chat <span class="help" tabindex="0" aria-label="How cost per AWS chat is calculated">i<span class="tooltip">Input tokens ÷ 1,000,000 × input price, plus output tokens ÷ 1,000,000 × output price. In range mode, this shows the lower and upper result.</span></span></dt><dd id="costPerChat">$0</dd></div>
+              <div><dt>Tokens per AWS chat <span class="help" tabindex="0" aria-label="How tokens per AWS chat are calculated">i<span class="tooltip">Input tokens plus output tokens for one request sent to AWS. In range mode, this shows the lower and upper total.</span></span></dt><dd id="totalTokens">0</dd></div>
             </dl>
             <section class="formula"><h3>Calculation</h3><p id="formula"></p></section>
             <button id="copySummary" type="button">Copy calculation summary</button>

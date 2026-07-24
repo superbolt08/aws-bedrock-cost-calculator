@@ -1,6 +1,9 @@
 export const MODELS = {
   "llama3-ca": { name: "Meta Llama 3 70B Instruct", region: "Canada Central", inputPrice: 3.05, outputPrice: 4.03 },
   "llama33-us": { name: "Meta Llama 3.3 70B Instruct", region: "US regions", inputPrice: 0.72, outputPrice: 0.72 },
+  mistral7b: { name: "Mistral 7B", region: "In-region (verify AWS region)", inputPrice: 0.17, outputPrice: 0.23 },
+  mixtral8x7b: { name: "Mixtral 8x7B", region: "In-region (verify AWS region)", inputPrice: 0.52, outputPrice: 0.81 },
+  mistralLarge2402: { name: "Mistral Large (24.02)", region: "In-region (verify AWS region)", inputPrice: 4.60, outputPrice: 13.80 },
   custom: { name: "Custom model", region: "Custom region", inputPrice: 0, outputPrice: 0 },
 };
 
