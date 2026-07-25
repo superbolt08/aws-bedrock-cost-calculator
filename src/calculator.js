@@ -4,6 +4,16 @@ export const MODELS = {
   mistral7b: { name: "Mistral 7B", region: "In-region (verify AWS region)", inputPrice: 0.17, outputPrice: 0.23 },
   mixtral8x7b: { name: "Mixtral 8x7B", region: "In-region (verify AWS region)", inputPrice: 0.52, outputPrice: 0.81 },
   mistralLarge2402: { name: "Mistral Large (24.02)", region: "In-region (verify AWS region)", inputPrice: 4.60, outputPrice: 13.80 },
+  devstral2: { name: "Devstral 2 123B", region: "US East / Ohio / West", inputPrice: 0.40, outputPrice: 2.00 },
+  magistralSmall: { name: "Magistral Small 1.2", region: "US East / Ohio / West", inputPrice: 0.50, outputPrice: 1.50 },
+  voxtralMini: { name: "Voxtral Mini 1.0", region: "US East / Ohio / West", inputPrice: 0.04, outputPrice: 0.04 },
+  voxtralSmall: { name: "Voxtral Small 1.0", region: "US East / Ohio / West", inputPrice: 0.10, outputPrice: 0.30 },
+  ministral3b: { name: "Ministral 3B 3.0", region: "US East / Ohio / West", inputPrice: 0.10, outputPrice: 0.10 },
+  ministral8b: { name: "Ministral 8B 3.0", region: "US East / Ohio / West", inputPrice: 0.15, outputPrice: 0.15 },
+  ministral14b: { name: "Ministral 14B 3.0", region: "US East / Ohio / West", inputPrice: 0.20, outputPrice: 0.20 },
+  mistralLarge3: { name: "Mistral Large 3", region: "US East / Ohio / West", inputPrice: 0.50, outputPrice: 1.50 },
+  nemotronNano2: { name: "NVIDIA Nemotron Nano 2", region: "US East / Ohio / West", inputPrice: 0.06, outputPrice: 0.23 },
+  nemotronSuper: { name: "NVIDIA Nemotron 3 Super 120B", region: "US East / Ohio / West", inputPrice: 0.15, outputPrice: 0.65 },
   custom: { name: "Custom model", region: "Custom region", inputPrice: 0, outputPrice: 0 },
 };
 
