@@ -78,7 +78,22 @@
           <p class="eyebrow">ESTIMATE</p>
           <h2 id="modelSummary">Meta Llama 3 70B Instruct</h2>
           <p class="muted" id="regionSummary">Canada Central</p>
-          <div class="total"><span>Estimated monthly model cost</span><strong id="monthlyCost">$0</strong><small>USD, token charges only</small></div>
+          <label class="currency-select" for="currency">Display currency
+            <select id="currency" name="currency">
+              <option value="USD">US Dollar (USD)</option>
+              <option value="CAD" selected>Canadian Dollar (CAD)</option>
+              <option value="AED">UAE Dirham (AED)</option>
+              <option value="EUR">Euro (EUR)</option>
+              <option value="GBP">British Pound (GBP)</option>
+              <option value="AUD">Australian Dollar (AUD)</option>
+              <option value="NZD">New Zealand Dollar (NZD)</option>
+              <option value="JPY">Japanese Yen (JPY)</option>
+              <option value="INR">Indian Rupee (INR)</option>
+              <option value="CNY">Chinese Yuan (CNY)</option>
+            </select>
+          </label>
+          <p class="rate-status" id="rateStatus">Loading exchange rates…</p>
+          <div class="total"><span>Estimated monthly model cost</span><strong id="monthlyCost">$0</strong><small id="currencyNote">Converted from USD model-token pricing</small></div>
           <div class="total secondary"><span>Estimated annual model cost</span><strong id="annualCost">$0</strong></div>
           <button id="summaryToggle" class="summary-toggle" type="button" aria-expanded="true" aria-controls="summaryDetails">Hide calculation summary</button>
           <div id="summaryDetails">

@@ -12,6 +12,11 @@ export const PROFILES = {
   rag: { inputTokens: 8000, outputTokens: 525, lowerInputTokens: 5000, lowerOutputTokens: 250, upperInputTokens: 11000, upperOutputTokens: 800 },
 };
 
+export const FALLBACK_RATES = {
+  USD: 1, CAD: 1.40815, AED: 3.6725, EUR: 0.878195, GBP: 0.750346,
+  AUD: 1.433751, NZD: 1.731447, JPY: 163.692064, INR: 96.723524, CNY: 6.783033,
+};
+
 export function calculate(values) {
   const totalChats = values.volumeMode === "chats"
     ? values.monthlyChats
@@ -29,3 +34,5 @@ export function calculateRange(values) {
   const upper = calculate({ ...values, inputTokens: values.upperInputTokens, outputTokens: values.upperOutputTokens });
   return { lower, upper };
 }
+
+export function convertUsd(amount, rate) { return amount * rate; }
