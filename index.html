@@ -61,7 +61,7 @@
           <label id="monthlyChatsLabel" hidden>Monthly chats<input id="monthlyChats" name="monthlyChats" type="number" min="0" value="300000" /></label>
           <div class="two-col">
             <label>Days per month<input id="days" name="days" type="number" min="1" max="31" value="30" /></label>
-            <label>AWS fallback / cloud share <span>%</span><input id="fallbackRate" name="fallbackRate" type="number" min="0" max="100" step="0.1" value="5" /></label>
+            <label>AWS fallback <span class="help" tabindex="0" aria-label="What AWS fallback means">i<span class="tooltip">This is the percentage of total prompts routed to AWS servers. The remaining prompts are served by your primary model path.</span></span><span>%</span><input id="fallbackRate" name="fallbackRate" type="number" min="0" max="100" step="0.1" value="5" /></label>
           </div>
 
           <div class="section-heading"><span>3</span><div><h2>Tokens per cloud chat</h2><p>Presets use the chatbot context ranges discussed for ordinary and RAG-heavy chat.</p></div></div>
